@@ -1,0 +1,29 @@
+<header>
+  <h1>
+    Search Booking
+  </h1>
+</header>
+<div class="wrap-filter" *ngIf="filtredBookings">
+  Filter by Status:
+  <select name="status" (change)="filter($event.target.value)" id="">
+    <option value="null" selected>All</option>
+    <option value="confirm">Confirm</option>
+    <option value="actionRequired">Action Required</option>
+    <option value="information">Information</option>
+    <option value="cancel">Cancel</option>
+  </select>
+</div>
+
+<div class="wrap-bookings" *ngIf="filtredBookings">
+  <ng-container *ngFor="let booking of filtredBookings">
+    <app-booking class="wrap-booking" [booking]="booking"></app-booking>
+  </ng-container>
+</div>
+
+<div class="wrap-error" *ngIf="bookingsNotFound">
+
+  <h2>Error - 404</h2>
+  <p>
+    Oups! We cannot load the bookings, please try later.
+  </p>
+</div>

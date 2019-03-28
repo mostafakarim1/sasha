@@ -1,0 +1,32 @@
+<ng-container *ngIf="booking">
+  <div class="icon">
+    <img *ngIf="booking.xStatus === 'cancel'" src="assets/images/cancel.png" alt="">
+    <img *ngIf="booking.xStatus === 'information'" src="assets/images/information.png" alt="">
+    <img *ngIf="booking.xStatus === 'actionRequired'" src="assets/images/request.png" alt="">
+    <img *ngIf="booking.xStatus === 'confirm'" src="assets/images/confirm.png" alt="">
+  </div>
+  <div>
+    <div class="host">{{ booking.host }}</div>
+    <div class="code">{{ booking.code }}</div>
+  </div>
+  <div>
+    <h3 *ngIf="booking.customer.firstName || booking.customer.lastName">
+      {{ booking.customer.firstName }} {{ booking.customer.lastName }} -
+    </h3>
+    <span *ngIf="booking.traveller">{{ booking.traveller.length }} traveller(s)</span>
+    <ng-container *ngIf="booking.sector">
+      <p>From {{ booking.sector[0].begin | date }} to {{ booking.sector[booking.sector.length-1].end | date }}</p>
+      <p>
+        <ng-container *ngFor="let sector of booking.sector; let i = index ">
+          <span class="from" *ngIf="i === 0 || booking.sector[i - 1].to.airport.code !== sector.from.airport.code">
+            {{ sector.from.airport.code }}
+          </span>
+          <span>
+            ➤ {{ sector.to.airport.code }}
+          </span>
+        </ng-container>
+      </p>
+    </ng-container>
+  </div>
+  <b *ngIf="booking.total">{{ booking.total[0].amount | currency: booking.total[0].currency }}</b>
+</ng-container>

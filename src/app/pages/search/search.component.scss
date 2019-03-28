@@ -1,0 +1,22 @@
+header {
+  overflow: hidden;
+  background: url('../../../assets/images/background.jpg') no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 100px;
+  margin-bottom: 10px;
+  h1 {
+    color: #ffffff;
+    text-shadow: 0 0 6px black;
+    margin-left: 10px;
+  }
+}
+.wrap-filter {
+  margin: 0 10px;
+}
+.wrap-bookings {
+  margin: 10px;
+}
+.wrap-error {
+  margin: 10px;
+}
